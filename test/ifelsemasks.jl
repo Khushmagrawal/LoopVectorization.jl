@@ -43,7 +43,7 @@ T = Float32
       invOmP = 1 + exp(α[i])
       nlogOmP = log(invOmP)
       nlogP = nlogOmP - α[i]
-      t -= y[i] ? nlogP : nlogOmP
+      t -= (y[i] > 0) ? nlogP : nlogOmP
     end
     t
   end
@@ -53,7 +53,7 @@ T = Float32
       invOmP = 1 + exp(α[i])
       nlogOmP = log(invOmP)
       nlogP = nlogOmP - α[i]
-      t -= y[i] ? nlogP : nlogOmP
+      t -= (y[i] > 0) ? nlogP : nlogOmP
     end
     t
   end
@@ -63,7 +63,7 @@ T = Float32
       invOmP = 1 + exp(α[i])
       nlogOmP = log(invOmP)
       nlogP = nlogOmP - α[i]
-      t -= y[i] ? nlogP : nlogOmP
+     t -= (y[i] > 0) ? nlogP : nlogOmP
     end
     t
   end

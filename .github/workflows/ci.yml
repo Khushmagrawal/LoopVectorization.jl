@@ -105,13 +105,6 @@ jobs:
             ${{ runner.os }}-test-${{ env.cache-name }}-
             ${{ runner.os }}-test-
             ${{ runner.os }}-
-      - name: Override VectorizationBase with Fork
-        shell: julia --project=. {0}
-        run: |
-          using Pkg
-          Pkg.add(url="https://github.com/Khushmagrawal/VectorizationBase.jl.git", rev="master")
-          Pkg.resolve()
-          Pkg.instantiate()
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
         env:
