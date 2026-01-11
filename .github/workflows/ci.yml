@@ -60,15 +60,14 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
 
-      - name: Override VectorizationBase with fork
+      - name: Use Fork of VectorizationBase
+        shell: julia --color=yes --project=. {0}
         run: |
-          julia --color=yes -e '
-            using Pkg
-            Pkg.add(PackageSpec(
-              url="https://github.com/Khushmagrawal/VectorizationBase.jl",
-              rev="master"
-            ))
-          '
+          using Pkg
+          Pkg.add(url="https://github.com/Khushmagrawal/VectorizationBase.jl", rev="master")
+          Pkg.resolve()
+          Pkg.instantiate()
+
       - name: Build package
         uses: julia-actions/julia-buildpkg@v1
 
