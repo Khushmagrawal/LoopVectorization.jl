@@ -64,12 +64,11 @@ jobs:
         run: |
           julia --color=yes -e '
             using Pkg
-            Pkg.develop(PackageSpec(
+            Pkg.add(PackageSpec(
               url="https://github.com/Khushmagrawal/VectorizationBase.jl",
               rev="master"
             ))
           '
-
       - name: Build package
         uses: julia-actions/julia-buildpkg@v1
 
