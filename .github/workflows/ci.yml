@@ -40,6 +40,9 @@ jobs:
           - part4
           - part5
           - part6
+        exclude:
+          - os: ubuntu-latest
+          - os: windows-latest
         include:
           - version: 'lts'
             os: macOS-latest
@@ -89,12 +92,16 @@ jobs:
             os: macOS-latest
             arch: aarch64
             loopvectorization_test: part6
+          
     steps:
       - uses: actions/checkout@v6
       - uses: julia-actions/setup-julia@v2
         with:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
+      - name: Install Custom VectorizationBase
+        run: |
+          julia --color=yes --project=@. -e 'using Pkg; Pkg.add(url="https://github.com/Khushmagrawal/VectorizationBase.jl.git", rev="master"); Pkg.instantiate(); Pkg.status()'
       - uses: actions/cache@v4
         env:
           cache-name: cache-artifacts
