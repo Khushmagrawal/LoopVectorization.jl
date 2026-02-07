@@ -715,7 +715,7 @@ T = Float32
   # for some reason.
   if (Sys.ARCH === :aarch64) && Sys.isapple()
     # This test fails on some systems but works on other systems (CI)
-    @test isapprox(t, Bernoulli_logitavx(bit, a), atol = ifelse(Int === Int32, 0.1, 1e-5))
+    @test isapprox(t, Bernoulli_logitavx(bit, a), atol = ifelse(Int === Int32, 0.1, 1e-6))
   else
     @test isapprox(t, Bernoulli_logitavx(bit, a), atol = ifelse(Int === Int32, 0.1, 0.0))
   end
@@ -729,7 +729,7 @@ T = Float32
   # for some reason.
   if (Sys.ARCH === :aarch64) && Sys.isapple()
     # This test fails on some systems but works on other systems (CI)
-    @test isapprox(t, Bernoulli_logitavx(bool, a), atol = ifelse(Int === Int32, 0.1, 1e-5))
+    @test isapprox(t, Bernoulli_logitavx(bool, a), atol = ifelse(Int === Int32, 0.1, 1e-6))
   else
     @test isapprox(t, Bernoulli_logitavx(bool, a), atol = ifelse(Int === Int32, 0.1, 0.0))
   end
@@ -742,8 +742,8 @@ T = Float32
   # for some reason.
   # TODO: Fix the underlying issue!
   if (Sys.ARCH === :aarch64) && Sys.isapple()
-    @test isapprox(t, Bernoulli_logitavx(bit, a), atol=1e-5)
-    @test isapprox(t, Bernoulli_logit_avx(bit, a), atol=1e-5)
+    @test isapprox(t, Bernoulli_logitavx(bit, a), atol=1e-6)
+    @test isapprox(t, Bernoulli_logit_avx(bit, a), atol=1e-6)
   else
     @test t ≈ Bernoulli_logitavx(bit, a)
     @test t ≈ Bernoulli_logit_avx(bit, a)
